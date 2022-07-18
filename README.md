@@ -1,1 +1,3 @@
-JWT (Json Web Token) basics
+<< Developmental Phase>> JWT (Json Web Token) basics
+</br>
+Restriction of routing
