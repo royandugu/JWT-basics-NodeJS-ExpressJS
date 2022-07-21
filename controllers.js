@@ -1,4 +1,10 @@
+const CustomAPIError=require("./Error_handlers/customError");
 const login=(req,res)=>{
+    const {userName,password}=req.body;
+    console.log(userName);
+    if(!userName || !password){
+        throw new CustomAPIError("Please enter username and password",400);
+    }
     res.send("Dummy LOGIN");
 }
 const dashBoard=(req,res)=>{

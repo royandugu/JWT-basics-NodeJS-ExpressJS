@@ -3,7 +3,7 @@ require("express-async-errors");
 const express=require("express");
 const app=express();
 
-const errorHandler=require("./error_handler");
+const errorHandler=require("./Error_handlers/error_handler");
 const router=require("./route");
 
 //Middlewares
