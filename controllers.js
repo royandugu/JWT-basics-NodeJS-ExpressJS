@@ -11,6 +11,12 @@ const login=(req,res)=>{
     res.status(200).json({msg:"User created",token});
 }
 const dashBoard=(req,res)=>{
+    const reqToken=req.headers.authorization;
+    if(!reqToken || !reqToken.startsWith("Bearer ")) throw new CustomAPIError("Authorization Error",401);
+
+    const token=reqToken.split(" ")[1];
+    console.log(token);
+
     const randomNumber=Math.floor(Math.random()*100);
     res.status(200).json({msg:"Hello user",secret:`Your lucky number is ${randomNumber}`});
 }
