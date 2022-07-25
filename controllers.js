@@ -15,17 +15,16 @@ const dashBoard=(req,res)=>{
     if(!reqToken || !reqToken.startsWith("Bearer ")) throw new CustomAPIError("Authorization Error",401);
 
     const token=reqToken.split(" ")[1];
-
+    
+    const randomNumber=Math.floor(Math.random()*100);
     //Checking if the token is valid
     try{
         const result=jwt.verify(token,process.env.JWT_SECRET);
-        console.log(result);
+        res.status(200).json({msg:`Hello ${result.userName}`,secret:`Your lucky number is ${randomNumber}`});
     }
     catch(err){
         throw new CustomAPIError("Token Invalid/Expired",401);
     }
 
-    const randomNumber=Math.floor(Math.random()*100);
-    res.status(200).json({msg:"Hello user",secret:`Your lucky number is ${randomNumber}`});
 }
 module.exports={login,dashBoard};
