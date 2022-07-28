@@ -1,21 +1,28 @@
 require("express-async-errors");
+require("dotenv").config();
+
 
 const express=require("express");
 const app=express();
 
-const errorHandler=require("./Error_handlers/error_handler");
-const router=require("./route");
+const router=require("./Routers/router");
+const errorHandler=require("./Error_Handlers/errorHandler");
+
 
 //Middlewares
 app.use(express.json());
 app.use("/api/v1",router);
-app.use(express.static("./public"));
-app.use((req,res)=>res.status(404).send("Route not found"));
+app.use((req,res)=>res.status(404).json({message:"Routing error, The following route does not exist"}));
 app.use(errorHandler);
 
 
-//Start method
+const port=process.env.API_PORT||3000;
 const start=()=>{
-    app.listen(5000,()=>console.log("API is listening to port 5000"));
+    try{
+        app.listen(port,()=>console.log(`API is listening to port ${port}`));
+    }
+    catch(err){
+        console.log("Something is wrong");
+    }
 }
 start();
