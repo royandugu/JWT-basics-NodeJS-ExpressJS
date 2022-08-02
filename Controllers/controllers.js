@@ -13,11 +13,7 @@ const login=(req,res)=>{
     res.status(200).json({message:"Login sucesfull",token:token});
 }
 const dashboard=(req,res)=>{
-    const fullToken=req.headers.authorization;
-    if(!fullToken || !fullToken.startsWith("Bearer ")) throw new CustomAPIError("Your token doesnot exist",401);
-    //Token checking
-    const actualToken=fullToken.split(" ")[1];
-    const result=jwt.verify(actualToken,process.env.JWT_SECRET);
-    if(result) res.status(200).json({message:`Welcome to dashboard ${result.userName}`,token:result});
+    const userName=req.user.userName;
+    res.status(200).json({message:`Welcome to dashboard ${userName}`});
 }
 module.exports={login,dashboard};
