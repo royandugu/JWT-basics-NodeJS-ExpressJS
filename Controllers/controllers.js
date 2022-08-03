@@ -1,12 +1,12 @@
 require("dotenv").config();
 
 const jwt=require("jsonwebtoken");
-const CustomAPIError=require("../Error_Handlers/customAPIError");
+const {BadRequestError}=require("../Error_Handlers/handlerCollectives");
 
 const login=(req,res)=>{
     //Login validation
     const {userName,password}=req.body;
-    if(!userName || !password) throw new CustomAPIError("Please enter your username and password",401);
+    if(!userName || !password) throw new BadRequestError("Please enter your username and password");
     //Token generation
     const id=1;//Dummy ID
     const token=jwt.sign({id,userName},process.env.JWT_SECRET,{expiresIn:"30d"});
