@@ -7,12 +7,13 @@ const app=express();
 
 const router=require("./Routers/router");
 const errorHandler=require("./Error_Handlers/errorHandler");
+const {StatusCodes}=require("http-status-codes");
 
 
 //Middlewares
 app.use(express.json());
 app.use("/api/v1",router);
-app.use((req,res)=>res.status(404).json({message:"Routing error, The following route does not exist"}));
+app.use((req,res)=>res.status(StatusCodes.NOT_FOUND).json({message:"Routing error, The following route does not exist"}));
 app.use(errorHandler);
 
 
