@@ -1,6 +1,10 @@
-const router=require("express").Router();
-const {login, dashboard}=require("../Controllers/controllers");
+const {login,dashBoard}=require("../Controllers/controllers");
 const authorize=require("../Middlewares/authorization");
+
+const express=require("express");
+const router=express.Router();
+
 router.route("/login").post(login);
-router.route("/dashboard").get(authorize,dashboard);
+router.route("/dashBoard").get(authorize,dashBoard);
+
 module.exports=router;

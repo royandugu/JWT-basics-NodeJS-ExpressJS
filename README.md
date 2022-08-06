@@ -1,4 +1,4 @@
-<< Developmental Phase>> JWT (Json Web Token) basics
+JWT (Json Web Token) basics
 </br>
 Restriction of routing
 </br>
@@ -13,4 +13,4 @@ the credentials for the user name and password. The token is stored in the front
 which is passed into the header request as `Authorization: Bearer tokenName` , when
 request for the dashboard is made from the front end</br>
 
-*--Learning and implementing from John Smilga--*
+*--Learned and implemented from John Smilga--*
